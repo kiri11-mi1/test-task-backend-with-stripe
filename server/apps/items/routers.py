@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import ItemViewSet, BuyViewSet
+from .viewsets import ItemViewSet, BuyViewSet
 
 items_router = DefaultRouter()
 
