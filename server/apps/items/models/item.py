@@ -12,3 +12,10 @@ class Item(models.Model):
         decimal_places=2,
         validators=(MinValueValidator(Decimal('0.01')),)
     )
+
+    class Meta:
+        verbose_name = 'Покупка'
+        verbose_name_plural = 'Покупки'
+
+    def __str__(self):
+        return f'Покупка {self.id}: {self.name}'
