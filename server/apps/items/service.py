@@ -1,19 +1,24 @@
-from decimal import Decimal
+from django.http import request
+from django.urls import reverse
 from stripe.api_resources.price import Price
 from stripe.api_resources.checkout.session import Session
 
+
 import stripe
+
 
 API_KEY = 'sk_test_51LjeHPGQS6hNySCITgx25ejHFML424Zjy3wczSayJ1VftGQqKJdM8CNDje7PHUWswvjTukt2FIPrSqJCYhOn9vnV00sQ49mF4m'
 PRODUCT = 'prod_MSZvRUKqY276GT'
+# uri = request.escape_uri_path('success.html')
 
 
 class StripeAPI:
     stripe.api_key = API_KEY
     product = PRODUCT
 
-    def __init__(self, price: int):
+    def __init__(self, price: int, host: str):
         self.price = price
+        self.host = host
 
     def _create_price(self) -> Price:
         return stripe.Price.create(
@@ -24,8 +29,8 @@ class StripeAPI:
 
     def create_session(self) -> dict:
         stripe_session: Session = stripe.checkout.Session.create(
-            success_url='https://example.com/success',
-            cancel_url='https://example.com/cancel',
+            success_url=f'http://{self.host}/static/success.html',
+            cancel_url=f'http://{self.host}/static/cancel.html',
             line_items=[
                 {
                     "price": self._create_price().id,
@@ -38,7 +43,7 @@ class StripeAPI:
 
 
 if __name__ == '__main__':
-    stripe_api = StripeAPI(price=Decimal('450.30'))
+    stripe_api = StripeAPI(540)
     session = stripe_api.create_session()
     print(session)
     print(type(session))
