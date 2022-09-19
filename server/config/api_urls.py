@@ -4,5 +4,5 @@ from apps.items.routers import items_router
 
 
 urlpatterns = [
-    path('items/', include(items_router.urls)),
+    path('', include(items_router.urls)),
 ]
