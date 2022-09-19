@@ -12,6 +12,7 @@ INSTALLED_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.items',
 ]
 
 INSTALLED_APPS += LOCAL_APPS
