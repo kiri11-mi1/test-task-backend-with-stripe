@@ -4,13 +4,21 @@
 
 1. Склонировать репозиторий на удаленный сервер или себе на компьютер
 2. Установить _docker_ и _docker-compose_
-3. Создать в корне репозитория фай _.env_ и заполнить его аналогично как в файле _.env.example_
+3. Создать в папке *docker* файл _.dockerenv_ и заполнить его аналогично как файл _.dockerenv.example_
 4. Собрать и запустить докер-контейнеры
     ```
     docker-compose up -d
    ```
-5. Подключить к контейнеру с Django приложением и слздать суперпользователя командой:
+5. Выполнить миграции командой:
+   ```
+   docker-compose exec -it app python manage.py migrate
+   ```
+6. Раздать статику:
+      ```
+   docker-compose exec -it app python manage.py collectstatic
+   ```
+7. Создать суперпользователя:
    ```
    python manage.py createsuperuser
    ```
-6. Проект запущен!
+8. Перейти по адресу http://127.0.0.1/admin
