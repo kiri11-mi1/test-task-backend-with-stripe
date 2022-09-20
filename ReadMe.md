@@ -11,14 +11,14 @@
    ```
 5. Выполнить миграции командой:
    ```
-   docker-compose exec -it app python manage.py migrate
+   docker-compose exec app python manage.py migrate
    ```
 6. Раздать статику:
       ```
-   docker-compose exec -it app python manage.py collectstatic
+   docker-compose exec app python manage.py collectstatic
    ```
 7. Создать суперпользователя:
    ```
-   python manage.py createsuperuser
+   docker-compose exec app python manage.py createsuperuser
    ```
 8. Перейти по адресу http://127.0.0.1/admin
