@@ -10,5 +10,5 @@
 *.sql
 *.7z
 /pg_data
-.dockerenv
+*.dockerenv
 volumes/
