@@ -1,6 +1,6 @@
 /client/build
-/server/staticfiles
-/server/media
+/src/staticfiles
+/src/media
 .DS_Store
 .idea
 .vscode
@@ -10,3 +10,4 @@
 *.sql
 *.7z
 /pg_data
+.dockerenv

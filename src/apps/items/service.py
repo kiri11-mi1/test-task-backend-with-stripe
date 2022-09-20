@@ -1,20 +1,17 @@
-from django.http import request
-from django.urls import reverse
+import os
+
+import stripe
 from stripe.api_resources.price import Price
 from stripe.api_resources.checkout.session import Session
 
-
-import stripe
-
-
-API_KEY = 'sk_test_51LjeHPGQS6hNySCITgx25ejHFML424Zjy3wczSayJ1VftGQqKJdM8CNDje7PHUWswvjTukt2FIPrSqJCYhOn9vnV00sQ49mF4m'
-PRODUCT = 'prod_MSZvRUKqY276GT'
+# API_KEY = 'sk_test_51LjeHPGQS6hNySCITgx25ejHFML424Zjy3wczSayJ1VftGQqKJdM8CNDje7PHUWswvjTukt2FIPrSqJCYhOn9vnV00sQ49mF4m'
+# PRODUCT = 'prod_MSZvRUKqY276GT'
 # uri = request.escape_uri_path('success.html')
 
 
 class StripeAPI:
-    stripe.api_key = API_KEY
-    product = PRODUCT
+    stripe.api_key = os.environ.get('STRIPE_API_KEY')
+    product = os.environ.get('STRIPE_PRODUCT_KEY')
 
     def __init__(self, price: int, host: str):
         self.price = price
