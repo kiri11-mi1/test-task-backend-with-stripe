@@ -20,7 +20,7 @@ services:
     volumes:
       - ./src:/app
       - ./volumes/media:/media
-      - ./volumes/static:/static
+      - ./volumes/static:/src/staticfiles
     depends_on:
       - db
     command: gunicorn --bind 0.0.0.0:8000 --timeout 600 --log-level debug --reload
